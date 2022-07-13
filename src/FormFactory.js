@@ -1,7 +1,7 @@
 import {ethers} from "ethers"
 import {useEffect, useState} from "react";
 import {map} from "lodash";
-import {get, post} from "axios";
+import {post} from "axios";
 import Loading from 'react-simple-loading';
 import ContractInfo from './ContractInfo';
 
@@ -113,7 +113,7 @@ providerFactory.send("eth_requestAccounts", []).then(() => {
     /* 3.1 Create instance OF smart contract */
     EmailReceiptFactory = new ethers.Contract(
       // Please enter your current factory instance id
-      "0x27aE6aD0a13e8cbA32cFE4C2be7449672D74e384",
+      "0xBA9C4517565a8072CD181edC8925D20BDA06cABC",
       EmailReceiptFactory_ABI,
       signer
     );
@@ -127,7 +127,6 @@ const FormFactory = () => {
   /* 5. Function to set contract details */
   const setNewAcceptance = (acceptance = false) => {
     const emailAdressInput = document.querySelector("#email-address-factory");
-    console.log(emailAdressInput);
     /* 5.1 Get inputs from form */
     // 5.2 Getting values from the inputs
     const emailAdress = emailAdressInput.value;
@@ -142,8 +141,6 @@ const FormFactory = () => {
         setLoading(true)
 
         EmailReceiptFactory.getLastEmailReceipt_Contracts().then((address) => {
-          console.log('resaddes', address)
-          console.log('emailAdressInput.value', emailAdress)
           post('http://localhost:8000/send/'+emailAdress, null, { params: {
               address,
             }}).then(res => console.log('res send', res))
@@ -158,11 +155,10 @@ const FormFactory = () => {
         alert("Error setting receipt details" + err.message);
       });
   };
+
   const getListContracts = () => {
-    console.log("EmailReceiptFactory", EmailReceiptFactory);
     /* 5.3 Set details in smart contract */
     EmailReceiptFactory.allEmailReceipt_Contracts()
-      // EmailReceiptContract.setEmailReceipt(emailAdress, timeStampResponse, acceptance.toString())
       .then((res) => {
         setList(res)
         setLoading(false)
@@ -199,8 +195,7 @@ const FormFactory = () => {
       <section className={"list-section"}>
         {
           loading ? <Loading /> :
-
-            <table striped bordered hover size="sm">
+            <table>
               <thead>
               <tr>
                 <th>#</th>
