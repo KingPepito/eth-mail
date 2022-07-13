@@ -1,0 +1,152 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_acceptance",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_timeStampResponse",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "acceptance",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "email",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getEmailReceipt",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newEmail",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "newAcceptance",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "newTimeStampResponse",
+						"type": "string"
+					}
+				],
+				"name": "setEmailReceipt",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "timeStampResponse",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/EmailReceipt_Contract.sol": "EmailReceipt_Contract"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/EmailReceipt_Contract.sol": {
+			"keccak256": "0x9f26dccd693bf786f56526e81f4d7c9fb18fbaad4174ad76b5c27cf7dcd5fb5e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://17d827c51ef9beb710edd6f9932523867cdf16f8b828d039fff022886657d10b",
+				"dweb:/ipfs/QmW2vApEAuZB6pYHPiBADBZzt4mb7GCudp2iZdbbh5vzha"
+			]
+		}
+	},
+	"version": 1
+}

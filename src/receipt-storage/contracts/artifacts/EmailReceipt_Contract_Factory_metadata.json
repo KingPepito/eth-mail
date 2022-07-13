@@ -1,0 +1,63 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "test",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "testas",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"eth-mail/src/receipt-storage/contracts/EmailReceipt_Factory.sol": "EmailReceipt_Contract_Factory"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"eth-mail/src/receipt-storage/contracts/EmailReceipt_Factory.sol": {
+			"keccak256": "0x521d00e17e871136f5467a4371495d2ec47807eabfd2b44d06cb9a50c78b9efd",
+			"urls": [
+				"bzz-raw://f4a9a69c53850a48746aee90d408f6eda6c9fadde9342fc99b1c8bbc12ba0ef4",
+				"dweb:/ipfs/QmZ833UErTLKLtqnH6BHGhD5BRf4czuWAtSmSArYi5N6NU"
+			]
+		}
+	},
+	"version": 1
+}

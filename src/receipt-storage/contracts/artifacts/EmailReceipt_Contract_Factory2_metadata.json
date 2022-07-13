@@ -1,0 +1,145 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "string",
+						"name": "oldNumber",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "storedNumber",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "allEmailReceipt_Contracts",
+				"outputs": [
+					{
+						"internalType": "contract EmailReceipt_Contract[]",
+						"name": "coll",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "acceptance",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "timeStampResponse",
+						"type": "string"
+					}
+				],
+				"name": "createEmailReceipt_Contract",
+				"outputs": [
+					{
+						"internalType": "contract EmailReceipt_Contract[]",
+						"name": "coll",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLastEmailReceipt_Contracts",
+				"outputs": [
+					{
+						"internalType": "contract EmailReceipt_Contract",
+						"name": "coll",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "test",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "testas",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/EmailReceipt_Factory2.sol": "EmailReceipt_Contract_Factory2"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/EmailReceipt_Contract.sol": {
+			"keccak256": "0x9f26dccd693bf786f56526e81f4d7c9fb18fbaad4174ad76b5c27cf7dcd5fb5e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://17d827c51ef9beb710edd6f9932523867cdf16f8b828d039fff022886657d10b",
+				"dweb:/ipfs/QmW2vApEAuZB6pYHPiBADBZzt4mb7GCudp2iZdbbh5vzha"
+			]
+		},
+		"contracts/EmailReceipt_Factory2.sol": {
+			"keccak256": "0x87f05917bdbe1952e6bece6be130c261f105fc5ba9f2c101e446324dd69e7131",
+			"urls": [
+				"bzz-raw://6252475564add2918575072d3bbc93496733d0f1a353266457e6a5fb7045554d",
+				"dweb:/ipfs/QmfKnziGMkVrk2zjt6WiKE9qVFtCcM4Kx81DcHidUDUH1v"
+			]
+		}
+	},
+	"version": 1
+}
