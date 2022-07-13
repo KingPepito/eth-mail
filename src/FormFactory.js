@@ -1,6 +1,7 @@
 import {ethers} from "ethers"
 import {useEffect, useState} from "react";
 import {map} from "lodash";
+import {get, post} from "axios";
 import Loading from 'react-simple-loading';
 import ContractInfo from './ContractInfo';
 
@@ -97,8 +98,6 @@ providerFactory.send("eth_requestAccounts", []).then(() => {
       EmailReceiptFactory_ABI,
       signer
     );
-    console.log("EmailReceiptFactory", EmailReceiptFactory)
-
   });
 });
 
@@ -108,35 +107,36 @@ const FormFactory = () => {
   const [loading, setLoading] = useState(true)
   /* 5. Function to set contract details */
   const setNewAcceptance = (acceptance = false) => {
-
-    /* 5.1 Get inputs from form */
     const emailAdressInput = document.querySelector("#email-address-factory");
-    // 5.2 Getting values from the inputs
-    const emailAdress = emailAdressInput.value;
-    const timeStampResponse = Date.now().toString()
-    console.log('emailAdress', emailAdress)
-    console.log('timeStampResponse', timeStampResponse)
-    console.log('acceptance', acceptance)
-    console.log('EmailReceiptFactory', EmailReceiptFactory)
-
-    /* 5.3 Set details in smart contract */
-    EmailReceiptFactory.createEmailReceipt_Contract(emailAdress, timeStampResponse, acceptance.toString())
-      // EmailReceiptContract.setEmailReceipt(emailAdress, timeStampResponse, acceptance.toString())
-      .then(() => {
-        // update button value
-        // acceptButton.value = "Accepting...";
-
-        /* 5.4 Reset form */
-        emailAdressInput.value = "";
-        setLoading(true)
-        getListContracts()
-        /* 5.5 Get details from smart contract */
-        // getCurrentStatus();
-      })
-      .catch((err) => {
-        // If error occurs, display error message
-        alert("Error setting receipt details" + err.message);
-      });
+    get('http://localhost:8000/').then(res => console.log(res))
+    post('http://localhost:8000/send/'+emailAdressInput.value).then(res => console.log(res))
+    // /* 5.1 Get inputs from form */
+    // // 5.2 Getting values from the inputs
+    // const emailAdress = emailAdressInput.value;
+    // const timeStampResponse = Date.now().toString()
+    // console.log('emailAdress', emailAdress)
+    // console.log('timeStampResponse', timeStampResponse)
+    // console.log('acceptance', acceptance)
+    // console.log('EmailReceiptFactory', EmailReceiptFactory)
+    //
+    // /* 5.3 Set details in smart contract */
+    // EmailReceiptFactory.createEmailReceipt_Contract(emailAdress, timeStampResponse, acceptance.toString())
+    //   // EmailReceiptContract.setEmailReceipt(emailAdress, timeStampResponse, acceptance.toString())
+    //   .then(() => {
+    //     // update button value
+    //     // acceptButton.value = "Accepting...";
+    //
+    //     /* 5.4 Reset form */
+    //     emailAdressInput.value = "";
+    //     setLoading(true)
+    //     getListContracts()
+    //     /* 5.5 Get details from smart contract */
+    //     // getCurrentStatus();
+    //   })
+    //   .catch((err) => {
+    //     // If error occurs, display error message
+    //     alert("Error setting receipt details" + err.message);
+    //   });
   };
   const getListContracts = () => {
     console.log("EmailReceiptFactory", EmailReceiptFactory);

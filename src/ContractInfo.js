@@ -12,8 +12,6 @@ const ContractInfo = ({address, index}) => {
   const EmailReceiptContract_ABI = [{"inputs":[{"internalType":"string","name":"_email","type":"string"},{"internalType":"string","name":"_acceptance","type":"string"},{"internalType":"string","name":"_timeStampResponse","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"acceptance","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"email","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"timeStampResponse","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"newEmail","type":"string"},{"internalType":"string","name":"newAcceptance","type":"string"},{"internalType":"string","name":"newTimeStampResponse","type":"string"}],"name":"setEmailReceipt","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getEmailReceipt","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]
 
   const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-  console.log(2)
-  console.log(provider)
 
   provider.send("eth_requestAccounts", []).then(() => {
     provider.listAccounts().then((accounts) => {
@@ -25,7 +23,6 @@ const ContractInfo = ({address, index}) => {
         EmailReceiptContract_ABI,
         signer
       );
-      console.log("EmailReceiptContract", EmailReceiptContract)
     });
   });
 
@@ -38,7 +35,6 @@ const ContractInfo = ({address, index}) => {
     const email = emailReceipt[0];
     const timeStampResponse = emailReceipt[1];
     const acceptance = emailReceipt[2];
-    console.log({email, timeStampResponse, acceptance}, "infox");
     setLoading(false)
     setInfo({email, timeStampResponse, acceptance})
   };
