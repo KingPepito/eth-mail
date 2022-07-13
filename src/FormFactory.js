@@ -1,6 +1,9 @@
 import {ethers} from "ethers"
 import {useEffect, useState} from "react";
 import {map} from "lodash";
+import Loading from 'react-simple-loading';
+import ContractInfo from './ContractInfo';
+
 // 1. Declare global variable to store the web3 instance
 let EmailReceiptContract;
 let EmailReceiptFactory;
@@ -102,11 +105,12 @@ providerFactory.send("eth_requestAccounts", []).then(() => {
 
 const FormFactory = () => {
   const [list, setList] = useState([])
+  const [loading, setLoading] = useState(true)
   /* 5. Function to set contract details */
   const setNewAcceptance = (acceptance = false) => {
 
     /* 5.1 Get inputs from form */
-    const emailAdressInput = document.querySelector("#email-address");
+    const emailAdressInput = document.querySelector("#email-address-factory");
     // 5.2 Getting values from the inputs
     const emailAdress = emailAdressInput.value;
     const timeStampResponse = Date.now().toString()
@@ -124,7 +128,8 @@ const FormFactory = () => {
 
         /* 5.4 Reset form */
         emailAdressInput.value = "";
-
+        setLoading(true)
+        getListContracts()
         /* 5.5 Get details from smart contract */
         // getCurrentStatus();
       })
@@ -141,6 +146,7 @@ const FormFactory = () => {
       .then((res) => {
         console.log('list is', res)
         setList(res)
+        setLoading(false)
       })
       .catch((err) => {
         // If error occurs, display error message
@@ -156,11 +162,11 @@ const FormFactory = () => {
   return <>
     <section className="email-form-section">
       <section className="section-header">
-        <h1>Factory form</h1>
+        <h1>Factory email with acknowledgement receipt</h1>
       </section>
       <form>
         <label htmlFor="email-address">Your Email</label>
-        <input type="email" id="email-address"/>
+        <input type="email" id="email-address-factory"/>
         <div className="buttons-form">
           <input type="button" value="✔" id="accept" onClick={() => setNewAcceptance(true)}/>
           <input type="button" value="✘" id="refuse" onClick={() => setNewAcceptance(false)}/>
@@ -171,10 +177,25 @@ const FormFactory = () => {
       <section className="section-header">
         <h1>List contracts created</h1>
       </section>
-      <ul className={"list-section"} >
-        {map(list, el => <li>{el}</li>)}
-      </ul>
+      <section className={"list-section"}>
+        {
+          loading ? <Loading /> :
 
+            <table striped bordered hover size="sm">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Timestamp</th>
+                <th>Status</th>
+              </tr>
+              </thead>
+              <tbody>
+              {map(list, (el, index) => <ContractInfo address={el} index={index} />)}
+            </tbody>
+          </table>
+          }
+      </section>
     </section>
   </>
 }

@@ -89,7 +89,6 @@ function App() {
     <script src="../receipt-storage/index.js" type="application/javascript" />
   </Helmet>
   <body>
-  <Form />
   <FormFactory />
   </body>
   </html>
