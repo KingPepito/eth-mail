@@ -56,8 +56,27 @@
 					}
 				],
 				"name": "createEmailReceipt_Contract",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "contract EmailReceipt_Contract[]",
+						"name": "coll",
+						"type": "address[]"
+					}
+				],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLastEmailReceipt_Contracts",
+				"outputs": [
+					{
+						"internalType": "contract EmailReceipt_Contract",
+						"name": "coll",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -115,10 +134,10 @@
 			]
 		},
 		"eth-mail/src/receipt-storage/contracts/EmailReceipt_Factory2.sol": {
-			"keccak256": "0x90c089b437030b2d2eb331722a507f69e4a25fa116fde42fcb1d565fea52cfa2",
+			"keccak256": "0x87f05917bdbe1952e6bece6be130c261f105fc5ba9f2c101e446324dd69e7131",
 			"urls": [
-				"bzz-raw://08a49e9539a9ab60d9f85ccfcdb48903e98c02269332bbcdf8b48fdbe02004d8",
-				"dweb:/ipfs/QmZrHKeA42a4JXrfcwyQ14uoDYDuvzHU5qAf5d247rSyii"
+				"bzz-raw://6252475564add2918575072d3bbc93496733d0f1a353266457e6a5fb7045554d",
+				"dweb:/ipfs/QmfKnziGMkVrk2zjt6WiKE9qVFtCcM4Kx81DcHidUDUH1v"
 			]
 		}
 	},

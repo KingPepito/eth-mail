@@ -48,7 +48,7 @@ const ContractInfo = ({address, index}) => {
       <td>{index}</td>
       <td>{info.email}</td>
       <td>{info.timeStampResponse}</td>
-      <td>{info.acceptance ? '✔' : '✘' }</td>
+      <td>{info.acceptance === 'true' ? '✔' : info.acceptance === 'waiting' ? '🕚' : '✘' }</td>
     </>}
 
 

@@ -9,13 +9,14 @@ contract EmailReceipt_Contract_Factory2 {
         string memory email,
         string memory acceptance,
         string memory timeStampResponse
-    ) public {
+    ) public returns (EmailReceipt_Contract[] memory coll){
         EmailReceipt_Contract emailRecept = new EmailReceipt_Contract(
             email,
             acceptance,
             timeStampResponse
         );
         _emailReceipts.push(emailRecept);
+        return _emailReceipts;
     }
     function allEmailReceipt_Contracts()
     public
@@ -23,6 +24,15 @@ contract EmailReceipt_Contract_Factory2 {
     returns (EmailReceipt_Contract[] memory coll)
     {
         return _emailReceipts;
+    }
+
+    function getLastEmailReceipt_Contracts()
+    public
+    view
+    returns (EmailReceipt_Contract coll)
+    {
+        EmailReceipt_Contract item = _emailReceipts[_emailReceipts.length-1];
+        return item;
     }
 
     event storedNumber(

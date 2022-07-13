@@ -29,7 +29,13 @@ const EmailReceiptFactory_ABI = [
       }
     ],
     "name": "createEmailReceipt_Contract",
-    "outputs": [],
+    "outputs": [
+      {
+        "internalType": "contract EmailReceipt_Contract[]",
+        "name": "coll",
+        "type": "address[]"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -82,6 +88,19 @@ const EmailReceiptFactory_ABI = [
     ],
     "stateMutability": "view",
     "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getLastEmailReceipt_Contracts",
+    "outputs": [
+      {
+        "internalType": "contract EmailReceipt_Contract",
+        "name": "coll",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }
 ]
 
@@ -94,7 +113,7 @@ providerFactory.send("eth_requestAccounts", []).then(() => {
     /* 3.1 Create instance OF smart contract */
     EmailReceiptFactory = new ethers.Contract(
       // Please enter your current factory instance id
-      "0x3A8fcd8b598DFDE2b2bDb5b56A06BA0403b2c2f9",
+      "0x27aE6aD0a13e8cbA32cFE4C2be7449672D74e384",
       EmailReceiptFactory_ABI,
       signer
     );
@@ -108,35 +127,36 @@ const FormFactory = () => {
   /* 5. Function to set contract details */
   const setNewAcceptance = (acceptance = false) => {
     const emailAdressInput = document.querySelector("#email-address-factory");
-    get('http://localhost:8000/').then(res => console.log(res))
-    post('http://localhost:8000/send/'+emailAdressInput.value).then(res => console.log(res))
-    // /* 5.1 Get inputs from form */
-    // // 5.2 Getting values from the inputs
-    // const emailAdress = emailAdressInput.value;
-    // const timeStampResponse = Date.now().toString()
-    // console.log('emailAdress', emailAdress)
-    // console.log('timeStampResponse', timeStampResponse)
-    // console.log('acceptance', acceptance)
-    // console.log('EmailReceiptFactory', EmailReceiptFactory)
-    //
-    // /* 5.3 Set details in smart contract */
-    // EmailReceiptFactory.createEmailReceipt_Contract(emailAdress, timeStampResponse, acceptance.toString())
-    //   // EmailReceiptContract.setEmailReceipt(emailAdress, timeStampResponse, acceptance.toString())
-    //   .then(() => {
-    //     // update button value
-    //     // acceptButton.value = "Accepting...";
-    //
-    //     /* 5.4 Reset form */
-    //     emailAdressInput.value = "";
-    //     setLoading(true)
-    //     getListContracts()
-    //     /* 5.5 Get details from smart contract */
-    //     // getCurrentStatus();
-    //   })
-    //   .catch((err) => {
-    //     // If error occurs, display error message
-    //     alert("Error setting receipt details" + err.message);
-    //   });
+    console.log(emailAdressInput);
+    /* 5.1 Get inputs from form */
+    // 5.2 Getting values from the inputs
+    const emailAdress = emailAdressInput.value;
+    const timeStampResponse = Date.now().toString()
+
+    /* 5.3 Set details in smart contract */
+    EmailReceiptFactory.createEmailReceipt_Contract(emailAdress, timeStampResponse, 'waiting')
+      // EmailReceiptContract.setEmailReceipt(emailAdress, timeStampResponse, acceptance.toString())
+      .then((res) => {
+        /* 5.4 Reset form */
+        emailAdressInput.value = "";
+        setLoading(true)
+
+        EmailReceiptFactory.getLastEmailReceipt_Contracts().then((address) => {
+          console.log('resaddes', address)
+          console.log('emailAdressInput.value', emailAdress)
+          post('http://localhost:8000/send/'+emailAdress, null, { params: {
+              address,
+            }}).then(res => console.log('res send', res))
+        })
+
+        getListContracts()
+        /* 5.5 Get details from smart contract */
+        // getCurrentStatus();
+      })
+      .catch((err) => {
+        // If error occurs, display error message
+        alert("Error setting receipt details" + err.message);
+      });
   };
   const getListContracts = () => {
     console.log("EmailReceiptFactory", EmailReceiptFactory);
@@ -144,7 +164,6 @@ const FormFactory = () => {
     EmailReceiptFactory.allEmailReceipt_Contracts()
       // EmailReceiptContract.setEmailReceipt(emailAdress, timeStampResponse, acceptance.toString())
       .then((res) => {
-        console.log('list is', res)
         setList(res)
         setLoading(false)
       })
