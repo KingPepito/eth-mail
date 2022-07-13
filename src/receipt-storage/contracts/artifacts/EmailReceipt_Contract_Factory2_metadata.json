@@ -1,0 +1,126 @@
+{
+	"compiler": {
+		"version": "0.8.15+commit.e14f2714"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "string",
+						"name": "oldNumber",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "storedNumber",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "allEmailReceipt_Contracts",
+				"outputs": [
+					{
+						"internalType": "contract EmailReceipt_Contract[]",
+						"name": "coll",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "acceptance",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "timeStampResponse",
+						"type": "string"
+					}
+				],
+				"name": "createEmailReceipt_Contract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "test",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "testas",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"eth-mail/src/receipt-storage/contracts/EmailReceipt_Factory2.sol": "EmailReceipt_Contract_Factory2"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"eth-mail/src/receipt-storage/contracts/EmailReceipt_Contract.sol": {
+			"keccak256": "0x8d15e12599a4d9f252479e03f4bd0c2b0e192c09339d6bac67d5068cb694da10",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://65f6793f6e72a5d02d23d4e4e4d37ec4e4226ae8595da785d8ebde84d088b603",
+				"dweb:/ipfs/Qmeg1YPqsS9cZQbZgtZRKhA4wXfzCnk4j2SvWkUXPViBho"
+			]
+		},
+		"eth-mail/src/receipt-storage/contracts/EmailReceipt_Factory2.sol": {
+			"keccak256": "0x90c089b437030b2d2eb331722a507f69e4a25fa116fde42fcb1d565fea52cfa2",
+			"urls": [
+				"bzz-raw://08a49e9539a9ab60d9f85ccfcdb48903e98c02269332bbcdf8b48fdbe02004d8",
+				"dweb:/ipfs/QmZrHKeA42a4JXrfcwyQ14uoDYDuvzHU5qAf5d247rSyii"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,9 +1,11 @@
 // 1. Declare global variable to store the web3 instance
+const {getAbiForContract} = require("./getAbi.js");
+
 let EmailReceiptContract;
 
 // 2. Set contract address and ABI
 const EmailReceiptContract_Address = "0x1907961843bAD4E8CB58435c0617A9B04091DF06";
-const EmailReceiptContract_ABI = [{"inputs":[],"name":"acceptance","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"email","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"timeStampResponse","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"newEmail","type":"string"},{"internalType":"string","name":"newAcceptance","type":"string"},{"internalType":"string","name":"newTimeStampResponse","type":"string"}],"name":"setEmailReceipt","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getEmailReceipt","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"},{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]
+const EmailReceiptContract_ABI = getAbiForContract('EmailReceipt_Contract')
 console.log(window.ethereum)
 /* 3. Prompt user to sign in to MetaMask */
 const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
