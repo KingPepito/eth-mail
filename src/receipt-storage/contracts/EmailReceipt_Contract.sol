@@ -26,7 +26,9 @@ contract EmailReceipt_Contract{
         string memory newAcceptance,
         string memory newTimeStampResponse
     ) public {
-        email = newEmail;
+        if(keccak256(abi.encodePacked(newEmail)) == "") {
+            email = newEmail;
+        }
         acceptance = newAcceptance;
         timeStampResponse = newTimeStampResponse;
     }

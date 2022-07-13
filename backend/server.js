@@ -1,9 +1,8 @@
-
 const express = require('express')
 const cors = require('cors');
 require('dotenv').config();
-// import mailjet from "node-mailjet";
-// console.log('mailjet', mailjet)
+
+const Web3 = require("web3")
 const app = express()
 const port = 8000
 const Mailjet = require('node-mailjet');
@@ -11,32 +10,81 @@ const mailjet = new Mailjet({
   apiKey: process.env.MJ_APIKEY_PUBLIC || 'your-api-key',
   apiSecret: process.env.MJ_APIKEY_PRIVATE || 'your-api-secret'
 });
+
+// 2. Set contract address and ABI
+const EmailReceiptContract_ABI = [
+  {
+  "inputs": [{
+    "internalType": "string",
+    "name": "_email",
+    "type": "string"
+  }, {"internalType": "string", "name": "_acceptance", "type": "string"}, {
+    "internalType": "string",
+    "name": "_timeStampResponse",
+    "type": "string"
+  }], "stateMutability": "nonpayable", "type": "constructor"
+}, {
+  "inputs": [],
+  "name": "acceptance",
+  "outputs": [{"internalType": "string", "name": "", "type": "string"}],
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "inputs": [],
+  "name": "email",
+  "outputs": [{"internalType": "string", "name": "", "type": "string"}],
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "inputs": [],
+  "name": "timeStampResponse",
+  "outputs": [{"internalType": "string", "name": "", "type": "string"}],
+  "stateMutability": "view",
+  "type": "function"
+}, {
+  "inputs": [{"internalType": "string", "name": "newEmail", "type": "string"}, {
+    "internalType": "string",
+    "name": "newAcceptance",
+    "type": "string"
+  }, {"internalType": "string", "name": "newTimeStampResponse", "type": "string"}],
+  "name": "setEmailReceipt",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+}, {
+  "inputs": [],
+  "name": "getEmailReceipt",
+  "outputs": [{"internalType": "string", "name": "", "type": "string"}, {
+    "internalType": "string",
+    "name": "",
+    "type": "string"
+  }, {"internalType": "string", "name": "", "type": "string"}],
+  "stateMutability": "view",
+  "type": "function"
+}]
+const web3 = new Web3("http://localhost:7545")
+
 app.use(cors({
   origin: '*'
 }));
 
 app.get('/', (req, res) => {
-
-  console.log('GEt /')
   res.send('Hello World!')
 })
 
-console.log("process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE", process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE)
 
 app.post('/send/:email', (req, res) => {
   const {email} = req.params
   const {address} = req.query
-  console.log("email", email)
-  console.log("address", address)
   /**
    *
    * This call sends a message to one recipient.
    *
    */
-    const request = mailjet
+  const request = mailjet
     .post("send", {'version': 'v3.1'})
     .request({
-      "Messages":[
+      "Messages": [
         {
           "From": {
             "Email": "achantchisong@mailgun.com",
@@ -64,36 +112,37 @@ app.post('/send/:email', (req, res) => {
     })
 })
 
-app.get('/accept/:address', (req, res) => {
+async function updateContract(address, acceptance = false) {
+  const Contract = require('web3-eth-contract');
+
+  web3.eth.getAccounts().then(e => {
+    const firstAcc = e[0];
+    Contract.setProvider("http://localhost:7545");
+
+    const EmailReceiptContract = new Contract(EmailReceiptContract_ABI, address);
+
+    EmailReceiptContract.methods.setEmailReceipt('', Date.now().toString(), acceptance.toString()).send({from: firstAcc})
+      .on('receipt', function(){
+        console.log('contract done')
+      });
+  })
+}
+
+
+app.get('/accept/:address', async (req, res) => {
   const {address} = req.params
   console.log("address", address)
   console.log('post accept /')
+  await updateContract(address, true)
 
-  // Change contract states
-  // EmailReceiptContract.setEmailReceipt(emailAdress, timeStampResponse, acceptance.toString())
-  //   .then(() => {
-  //     // update button value
-  //     // acceptButton.value = "Accepting...";
-  //
-  //     /* 5.4 Reset form */
-  //     emailAdressInput.value = "";
-  //
-  //     /* 5.5 Get details from smart contract */
-  //     getCurrentStatus();
-  //   })
-  //   .catch((err) => {
-  //     // If error occurs, display error message
-  //     alert("Error setting receipt details" + err.message);
-  //   });
-
-  res.send('Hello World!')
+  res.send('Accepted!')
 })
 
-app.get('/refuse/:address', (req, res) => {
+app.get('/refuse/:address', async (req, res) => {
   const {address} = req.params
-  console.log("address", address)
-  console.log('post refuse /')
-  res.send('Hello World!')
+  await updateContract(address, false)
+
+  res.send('Refused!')
 })
 
 app.listen(port, () => {
