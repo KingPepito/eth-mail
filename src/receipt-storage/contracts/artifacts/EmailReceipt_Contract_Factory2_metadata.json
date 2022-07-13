@@ -111,7 +111,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"eth-mail/src/receipt-storage/contracts/EmailReceipt_Factory2.sol": "EmailReceipt_Contract_Factory2"
+			"contracts/EmailReceipt_Factory2.sol": "EmailReceipt_Contract_Factory2"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -125,15 +125,15 @@
 		"remappings": []
 	},
 	"sources": {
-		"eth-mail/src/receipt-storage/contracts/EmailReceipt_Contract.sol": {
-			"keccak256": "0x8d15e12599a4d9f252479e03f4bd0c2b0e192c09339d6bac67d5068cb694da10",
+		"contracts/EmailReceipt_Contract.sol": {
+			"keccak256": "0x9f26dccd693bf786f56526e81f4d7c9fb18fbaad4174ad76b5c27cf7dcd5fb5e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://65f6793f6e72a5d02d23d4e4e4d37ec4e4226ae8595da785d8ebde84d088b603",
-				"dweb:/ipfs/Qmeg1YPqsS9cZQbZgtZRKhA4wXfzCnk4j2SvWkUXPViBho"
+				"bzz-raw://17d827c51ef9beb710edd6f9932523867cdf16f8b828d039fff022886657d10b",
+				"dweb:/ipfs/QmW2vApEAuZB6pYHPiBADBZzt4mb7GCudp2iZdbbh5vzha"
 			]
 		},
-		"eth-mail/src/receipt-storage/contracts/EmailReceipt_Factory2.sol": {
+		"contracts/EmailReceipt_Factory2.sol": {
 			"keccak256": "0x87f05917bdbe1952e6bece6be130c261f105fc5ba9f2c101e446324dd69e7131",
 			"urls": [
 				"bzz-raw://6252475564add2918575072d3bbc93496733d0f1a353266457e6a5fb7045554d",
